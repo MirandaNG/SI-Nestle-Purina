@@ -1,0 +1,114 @@
+/* General */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    padding-top: 50px;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #e81c24;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    padding: 0.5rem;
+    vertical-align: middle;
+}
+
+.navbar .navbar-brand {
+    color: white !important;
+    margin-left: 35px;
+}
+
+.navbar .navbar-nav .nav-link {
+    color: white !important;
+    font-size: 1rem;
+}
+
+.navbar .navbar-toggler-icon {
+    background-color: #e81c24;
+}
+
+/* Sidebar */
+#sidebar-wrapper {
+    width: 0; /* Oculto inicialmente */
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: #e81c24;
+    color: white;
+    transition: width 0.3s ease; /* Suaviza la transición */
+    z-index: 99;
+    overflow-x: hidden;
+    padding-top: 60px;
+    margin-top: 40px;
+}
+
+#sidebar-wrapper.toggled {
+    width: 250px; /* Muestra la barra lateral */
+}
+
+#sidebar-wrapper .sidebar-heading {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 5px;
+    color: #fff;
+}
+
+#sidebar-wrapper .list-group-item {
+    color: white;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#sidebar-wrapper .list-group-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Contenido principal */
+#page-content-wrapper {
+    margin-left: 0; /* Sin margen inicialmente */
+    transition: margin-left 0.3s ease;
+    padding: 50px;
+}
+
+#page-content-wrapper.toggled {
+    margin-left: 250px; /* Ajusta el margen al expandir la barra lateral */
+}
+
+/* Botón de alternar barra lateral */
+#sidebarToggle {
+    font-size: 25px;
+    color: white;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    position: absolute;
+    left: 10px;
+    top: 15px;
+    z-index: 1000;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    #sidebar-wrapper {
+        width: 0;
+    }
+
+    #sidebar-wrapper.toggled {
+        width: 200px;
+    }
+
+    #page-content-wrapper.toggled {
+        margin-left: 200px;
+    }
+}
