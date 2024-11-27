@@ -1,6 +1,6 @@
 <?php
 session_start();
-include '../config/conexion.php';
+include '../../config/conexion.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $usu_nombre = $_POST['usu_nombre'];
@@ -88,7 +88,7 @@ $departamentos = $conexion->query("SELECT * FROM Departamentos");
             const rolSelect = document.getElementById('rol_id');
             rolSelect.innerHTML = '<option value="">Cargando roles...</option>';
 
-            fetch(`get_roles.php?depa_id=${departamentoId}`)
+            fetch(`modules/usuarios/get_roles.php?depa_id=${departamentoId}`)
                 .then(response => response.json())
                 .then(data => {
                     rolSelect.innerHTML = '<option value="">Seleccione un Rol</option>';
