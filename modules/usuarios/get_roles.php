@@ -1,5 +1,5 @@
 <?php
-include '../config/conexion.php';
+include '../../config/conexion.php';
 
 $depa_id = intval($_GET['depa_id']);
 $query = "SELECT * FROM Roles WHERE depa_id = ?";
