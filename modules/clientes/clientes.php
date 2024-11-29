@@ -11,10 +11,25 @@
 
     include '../../config/conexion.php';
     include '../../includes/header.php';
+    include '../../functions/clientes_functions.php';
 
-    // Consulta para obtener la lista de clientes
-    $query = "SELECT * FROM clientes";
-    $result = mysqli_query($conexion, $query);
+    // Llamada para obtener la lista de clientes
+    $clientes = obtener_clientes($conexion);
+    // Si el usuario envía el formulario para crear un cliente
+    if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['crear_cliente'])) {
+        $clt_nombre = $_POST['clt_nombre'];
+        $clt_direccion = $_POST['clt_direccion'];
+        $clt_telefono = $_POST['clt_telefono'];
+        $clt_email = $_POST['clt_email'];
+        $clt_tipo = $_POST['clt_tipo'];
+
+        $resultado = crear_cliente($clt_nombre, $clt_direccion, $clt_telefono, $clt_email, $clt_tipo, $conexion);
+        if ($resultado) {
+            echo "Cliente creado con éxito";
+        } else {
+            echo "Error al crear cliente";
+        }
+    }
 ?>
 
 <div id="page-content-wrapper">
@@ -23,7 +38,7 @@
 
         <!-- Verificar permisos para agregar clientes -->
         <?php if (isset($permisos['Clientes']) && in_array('crear', $permisos['Clientes'])): ?>
-            <a href="agregar_cliente.php" class="btn btn-success mb-3">Agregar Cliente</a>
+            <a href="agregar-cliente.php" class="btn btn-success mb-3">Agregar Cliente</a>
         <?php endif; ?>
 
         <!-- Tabla de Clientes -->
@@ -48,11 +63,14 @@
                         <td><?php echo htmlspecialchars($cliente['clt_tipo']); ?></td>
                         <td>
                             <!-- Acciones según permisos -->
+                            <?php if (isset($permisos['Clientes']) && in_array('ver', $permisos['Clientes'])): ?>
+                                <a href="ver-cliente.php?id=<?php echo $cliente['id']; ?>" class="btn btn-warning btn-sm">Ver</a>
+                            <?php endif; ?>
                             <?php if (isset($permisos['Clientes']) && in_array('editar', $permisos['Clientes'])): ?>
-                                <a href="editar_cliente.php?id=<?php echo $cliente['id']; ?>" class="btn btn-warning btn-sm">Editar</a>
+                                <a href="editar-cliente.php?id=<?php echo $cliente['id']; ?>" class="btn btn-warning btn-sm">Editar</a>
                             <?php endif; ?>
                             <?php if (isset($permisos['Clientes']) && in_array('eliminar', $permisos['Clientes'])): ?>
-                                <a href="eliminar_cliente.php?id=<?php echo $cliente['id']; ?>" class="btn btn-danger btn-sm">Eliminar</a>
+                                <a href="eliminar-cliente.php?id=<?php echo $cliente['id']; ?>" class="btn btn-danger btn-sm">Eliminar</a>
                             <?php endif; ?>
                         </td>
                     </tr>

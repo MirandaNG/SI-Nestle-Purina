@@ -6,6 +6,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../../public/css/style-02.css">
     <title>Sistema ERP</title>
+    <link rel="icon" href="../../assets/images/purina_logo-01.png" type="image/png">
 </head>
 <body>
     <!-- Navbar -->

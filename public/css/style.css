@@ -111,6 +111,24 @@ body {
 }
 
 /* Estilo para el cuerpo de las tarjetas */
+.card-ventas {
+    background-color: #86a744;
+    color: white;
+}
+
+.card-ventas:hover {
+    background-color: #a0c459;
+}
+
+.card-inventarios {
+    background-color: #b213dc;
+    color: white;
+}
+
+.card-inventarios:hover {
+    background-color: #bd2ae6;
+}
+
 .card-body {
     display: flex;
     align-items: center;
@@ -170,6 +188,60 @@ body {
 .card-proveedores:hover {
     background-color: #138496;
 }
+
+/* Estilos para las pestañas */
+.tabs {
+    margin-top: 20px;
+}
+
+.tab-titles {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+.tab-title {
+    padding: 10px 20px;
+    background-color: #f0f0f0;
+    margin-right: 5px;
+    cursor: pointer;
+    border-radius: 5px 5px 0 0;
+    transition: background-color 0.3s;
+}
+
+.tab-title.active {
+    background-color: #007bff;
+    color: white;
+}
+
+.tab-content {
+    display: none;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-top: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table th, table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+table th {
+    background-color: #f9f9f9;
+}
+
 
 /* Responsive */
 @media (max-width: 768px) {
