@@ -11,7 +11,7 @@
 
     include '../../config/conexion.php';
     include '../../includes/header.php';
-    include '../../functions/clientes_functions.php';
+    include '../../functions/CRUD/clientes_functions.php';
 
     // Llamada para obtener la lista de clientes
     $clientes = obtener_clientes($conexion);
@@ -36,10 +36,9 @@
     <div class="container mt-5">
         <h1 class="mb-4">Clientes</h1>
 
-        <!-- Verificar permisos para agregar clientes -->
-        <?php if (isset($permisos['Clientes']) && in_array('crear', $permisos['Clientes'])): ?>
+        <div class="mb-3">
             <a href="agregar-cliente.php" class="btn btn-success mb-3">Agregar Cliente</a>
-        <?php endif; ?>
+        </div>
 
         <!-- Tabla de Clientes -->
         <table class="table table-striped">
@@ -59,7 +58,7 @@
                         <td><?php echo htmlspecialchars($cliente['clt_nombre']); ?></td>
                         <td><?php echo htmlspecialchars($cliente['clt_direccion']); ?></td>
                         <td><?php echo htmlspecialchars($cliente['clt_telefono']); ?></td>
-                        <td><?php echo htmlspecialchars($cliente['clt_correo']); ?></td>
+                        <td><?php echo htmlspecialchars($cliente['clt_email']); ?></td>
                         <td><?php echo htmlspecialchars($cliente['clt_tipo']); ?></td>
                         <td>
                             <!-- Acciones según permisos -->

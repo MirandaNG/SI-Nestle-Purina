@@ -18,21 +18,11 @@
     
     <!-- Tarjetas del Dashboard -->
     <div class="row">
-        <!-- Card para Productos -->
-        <div class="col-sm-3 mb-3">
-            <div class="card shadow border-0 card-productos">
-                <a href="../productos/productos.php" class="card-body d-flex align-items-center justify-content-start text-decoration-none">
-                    <img src="../../assets/images/pet-food.png" alt="Productos" class="me-3 img-fluid" width="40">
-                    <span class="h5">Productos</span>
-                </a>
-            </div>
-        </div>
-
-        <!-- Card para Control de Stock -->
+    <!-- Card para Control de Stock -->
         <div class="col-sm-3 mb-3">
             <div class="card shadow border-0 card-clientes">
-                <a href="../inventarios/inventarios.php" class="card-body d-flex align-items-center justify-content-start text-decoration-none">
-                    <img src="../../assets/images/productos.png" alt="Inventario" class="me-3 img-fluid" width="40">
+                <a href="stock-inventario.php" class="card-body d-flex align-items-center justify-content-start text-decoration-none">
+                    <img src="../../assets/images/productos.png" alt="Stock" class="me-3 img-fluid" width="40">
                     <span class="h5">Control de Stock</span>
                 </a>
             </div>
@@ -41,7 +31,7 @@
         <!-- Card para Entradas -->
         <div class="col-sm-3 mb-3">
             <div class="card shadow border-0 card-salidas">
-                <a href="../entradas/entradas.php" class="card-body d-flex align-items-center justify-content-start text-decoration-none">
+                <a href="entradas-inventario.php" class="card-body d-flex align-items-center justify-content-start text-decoration-none">
                     <img src="../../assets/images/entradas.png" alt="Entradas" class="me-3 img-fluid" width="40">
                     <span class="h5">Entradas</span>
                 </a>
@@ -51,7 +41,7 @@
         <!-- Card para Salidas -->
         <div class="col-sm-3 mb-3">
             <div class="card shadow border-0 card-productos">
-                <a href="../salidas/salidas.php" class="card-body d-flex align-items-center justify-content-start text-decoration-none">
+                <a href="salidas-inventario.php" class="card-body d-flex align-items-center justify-content-start text-decoration-none">
                     <img src="../../assets/images/salidas.png" alt="Salidas" class="me-3 img-fluid" width="40">
                     <span class="h5">Salidas</span>
                 </a>

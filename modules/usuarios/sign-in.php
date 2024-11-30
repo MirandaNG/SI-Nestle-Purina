@@ -2,10 +2,10 @@
 session_start();
 include '../../config/conexion.php';
 include '../../includes/header-01.php';
-include '../../functions/usuarios_functions.php';
-include '../../functions/empleados_functions.php';
-include '../../functions/roles_functions.php';
-include '../../functions/departamentos_functions.php';
+include '../../functions/CRUD/usuarios_functions.php';
+include '../../functions/CRUD/empleados_functions.php';
+include '../../functions/No-CRUD/roles_functions.php';
+include '../../functions/No-CRUD/departamentos_functions.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $usu_nombre = $_POST['usu_nombre'];

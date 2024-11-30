@@ -4,7 +4,7 @@
     session_start();
     include '../../config/conexion.php';
     include '../../includes/header-01.php';
-    include '../../functions/usuarios_functions.php';
+    include '../../functions/CRUD/usuarios_functions.php';
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $usuario = $_POST['usuario'];
