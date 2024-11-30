@@ -8,19 +8,22 @@ function obtener_inventario($conexion) {
 }
 
 // Agregar un nuevo producto o materia prima al inventario
-function agregar_producto_inventario($nombre, $descripcion, $tipo, $cantidad_actual, $ubicacion, $precio_unitario, $conexion) {
-    $query = "INSERT INTO inventario (inv_nombre, inv_descripcion, inv_tipo, inv_cantidad_actual, inv_ubicacion, inv_precio_unitario) VALUES (?, ?, ?, ?, ?, ?)";
-    $stmt = $conexion->prepare($query);
-    $stmt->bind_param('sssisi', $nombre, $descripcion, $tipo, $cantidad_actual, $ubicacion, $precio_unitario);
-    return $stmt->execute();
+function agregar_producto_inventario($inv_nombre, $inv_tipo, $inv_cantidad_actual, $inv_ubicacion, $inv_precio_unitario, $conexion) {
+    $query = "INSERT INTO inventario (inv_nombre, inv_tipo, inv_cantidad_actual, inv_ubicacion, inv_precio_unitario) 
+              VALUES (?, ?, ?, ?, ?)";
+    $stmt = mysqli_prepare($conexion, $query);
+    mysqli_stmt_bind_param($stmt, "ssisd", $inv_nombre, $inv_tipo, $inv_cantidad_actual, $inv_ubicacion, $inv_precio_unitario);
+    return mysqli_stmt_execute($stmt);
 }
 
 // Actualizar un producto o materia prima del inventario
-function actualizar_producto_inventario($id, $nombre, $descripcion, $tipo, $cantidad_actual, $ubicacion, $precio_unitario, $conexion) {
-    $query = "UPDATE inventario SET inv_nombre = ?, inv_descripcion = ?, inv_tipo = ?, inv_cantidad_actual = ?, inv_ubicacion = ?, inv_precio_unitario = ? WHERE inv_id = ?";
-    $stmt = $conexion->prepare($query);
-    $stmt->bind_param('sssisii', $nombre, $descripcion, $tipo, $cantidad_actual, $ubicacion, $precio_unitario, $id);
-    return $stmt->execute();
+function actualizar_producto_inventario($inv_id, $inv_nombre, $inv_tipo, $inv_cantidad_actual, $inv_ubicacion, $inv_precio_unitario, $conexion) {
+    $query = "UPDATE inventario 
+    SET inv_nombre = ?, inv_tipo = ?, inv_cantidad_actual = ?, inv_ubicacion = ?, inv_precio_unitario = ? 
+    WHERE inv_id = ?";
+    $stmt = mysqli_prepare($conexion, $query);
+    mysqli_stmt_bind_param($stmt, "ssisd", $inv_nombre, $inv_tipo, $inv_cantidad_actual, $inv_ubicacion, $inv_precio_unitario, $inv_id);
+    return mysqli_stmt_execute($stmt);
 }
 
 // Eliminar un producto del inventario
@@ -30,6 +33,23 @@ function eliminar_producto_inventario($id, $conexion) {
     $stmt->bind_param('i', $id);
     return $stmt->execute();
 }
+
+// Obtener todas las entradas del inventario (materia prima y productos terminados)
+function obtener_entradas_inventario($conexion) {
+    $query = "SELECT inventario_entradas.inv_entra_id, inventario_entradas.inv_entra_cantidad, inventario_entradas.inv_entra_fecha, inventario_entradas.inv_entra_proveedor, inventario_entradas.inv_entra_motivo, inventario.inv_nombre
+                FROM inventario_entradas
+                JOIN inventario ON inventario_entradas.inv_id = inventario.inv_id";
+    return $conexion->query($query);
+}
+
+// Obtener todas las salidas del inventario (materia prima y productos terminados)
+function obtener_salidas_inventario($conexion) {
+    $query = "SELECT inventario_salidas.inv_sal_id, inventario_salidas.inv_sal_cantidad, inventario_salidas.inv_sal_fecha, inventario_salidas.inv_sal_destino, inventario_salidas.inv_sal_motivo, inventario.inv_nombre
+                FROM inventario_salidas
+                JOIN inventario ON inventario_salidas.inv_id = inventario.inv_id";
+    return $conexion->query($query);
+}
+
 
 // Registrar una entrada de inventario y actualizar el stock
 function registrar_entrada_inventario($inv_id, $cantidad, $fecha, $proveedor, $motivo, $conexion) {
