@@ -61,8 +61,8 @@
         <!-- Card para Seguimiento de Productos -->
         <div class="col-sm-3 mb-3">
             <div class="card shadow border-0 card-proveedores">
-                <a href="../modules/proveedores/proveedores.php" class="card-body d-flex align-items-center justify-content-start text-decoration-none">
-                    <img src="../../assets/images/transportes.png" alt="Proveedores" class="me-3 img-fluid" width="40">
+                <a href="../transferencias/transferencias.php" class="card-body d-flex align-items-center justify-content-start text-decoration-none">
+                    <img src="../../assets/images/transportes.png" alt="Transferencias" class="me-3 img-fluid" width="40">
                     <span class="h5">Seguimiento de Productos</span>
                 </a>
             </div>

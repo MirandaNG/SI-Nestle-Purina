@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['registrar_entrada'])) 
     $cantidad = $_POST['inv_entra_cantidad'];
     $fecha = $_POST['inv_entra_fecha'];
     $proveedor = $_POST['inv_entra_proveedor'];
-    $motivo = $_POST['inv_entra_motivo'];
+    $motivo = $_POST['motivo_id'];
 
     $resultado = registrar_entrada_inventario($inv_id, $cantidad, $fecha, $proveedor, $motivo, $conexion);
     if ($resultado) {
@@ -58,10 +58,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['registrar_entrada'])) 
                         <td><?php echo $entrada['inv_entra_cantidad']; ?></td>
                         <td><?php echo htmlspecialchars($entrada['inv_entra_fecha']); ?></td>
                         <td><?php echo htmlspecialchars($entrada['inv_entra_proveedor']); ?></td>
-                        <td><?php echo htmlspecialchars($entrada['inv_entra_motivo']); ?></td>
+                        <td><?php echo htmlspecialchars($entrada['motivo_nombre']); ?></td>
                         <td>
-                            <a href="editar-entrada.php?id=<?php echo $entrada['id']; ?>" class="btn btn-warning btn-sm">Editar</a>
-                            <a href="eliminar-entrada.php?id=<?php echo $entrada['id']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de eliminar esta entrada?');">Eliminar</a>
+                            <a href="editar-entrada.php?id=<?php echo $entrada['inv_entra_id']; ?>" class="btn btn-warning btn-sm">Editar</a>
+                            <a href="eliminar-entrada.php?id=<?php echo $entrada['inv_entra_id']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de eliminar esta entrada?');">Eliminar</a>
                         </td>
                     </tr>
                 <?php endwhile; ?>

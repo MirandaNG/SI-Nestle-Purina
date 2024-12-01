@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['registrar_entrada'])) 
     $cantidad = $_POST['cantidad'];
     $fecha = $_POST['fecha'];
     $proveedor = $_POST['proveedor'];
-    $motivo = $_POST['motivo'];
+    $motivo = $_POST['motivo_id'];
 
     $resultado = registrar_entrada_inventario($inv_id, $cantidad, $fecha, $proveedor, $motivo, $conexion);
     if ($resultado) {
@@ -57,8 +57,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['registrar_entrada'])) 
                 <input type="text" id="proveedor" name="proveedor" class="form-control" required>
             </div>
             <div class="mb-3">
-                <label for="motivo" class="form-label">Motivo</label>
-                <input type="text" id="motivo" name="motivo" class="form-control" required>
+                <label for="motivo_id" class="form-label">Motivo</label>
+                <select id="motivo_id" name="motivo_id" class="form-select" required>
+                    <option value="">Seleccione un motivo</option>
+                    <?php
+                    // Obtener solo los motivos con motivo_opcion = 1 (para entradas)
+                    $motivos = obtener_motivos_por_opcion($conexion, 1);
+                    while ($motivo = mysqli_fetch_assoc($motivos)): ?>
+                        <option value="<?php echo $motivo['motivo_id']; ?>">
+                            <?php echo $motivo['motivo_nombre']; ?>
+                        </option>
+                    <?php endwhile; ?>
+                </select>
             </div>
             <button type="submit" name="registrar_entrada" class="btn btn-success">Registrar Entrada</button>
         </form>
