@@ -28,45 +28,36 @@
             </div>
         </div>
 
-        <!-- Card para Órdenes de Venta -->
+        <!-- Card para Pedidos -->
         <div class="col-sm-3 mb-3">
             <div class="card shadow border-0 card-salidas">
-                <a href="../salidas/salidas.php" class="card-body d-flex align-items-center justify-content-start text-decoration-none">
-                    <img src="../../assets/images/salidas.png" alt="Salidas" class="me-3 img-fluid" width="40">
-                    <span class="h5">Órdenes de Venta</span>
+                <a href="../pedidos/pedidos.php" class="card-body d-flex align-items-center justify-content-start text-decoration-none">
+                    <img src="../../assets/images/pedidos.png" alt="Pedidos" class="me-3 img-fluid" width="40">
+                    <span class="h5">Pedidos</span>
                 </a>
             </div>
         </div>
 
-        <!-- Card para Seguimiento -->
+        <!-- Card para Facturación -->
         <div class="col-sm-3 mb-3">
             <div class="card shadow border-0 card-productos">
-                <a href="../modules/productos/productos.php" class="card-body d-flex align-items-center justify-content-start text-decoration-none">
-                    <img src="../../assets/images/products.png" alt="Productos" class="me-3 img-fluid" width="40">
-                    <span class="h5">Seguimiento</span>
+                <a href="../facturas/facturas_ventas.php" class="card-body d-flex align-items-center justify-content-start text-decoration-none">
+                    <img src="../../assets/images/facturas.png" alt="Facturacion" class="me-3 img-fluid" width="40">
+                    <span class="h5">Facturación</span>
                 </a>
             </div>
         </div>
 
-        <!-- Card para Gestión de Relaciones con Clientes (CRM) -->
+        <!-- Card para Soporte -->
         <div class="col-sm-3 mb-3">
             <div class="card shadow border-0 card-proveedores">
-                <a href="../modules/proveedores/proveedores.php" class="card-body d-flex align-items-center justify-content-start text-decoration-none">
-                    <img src="../../assets/images/proveedores.png" alt="Proveedores" class="me-3 img-fluid" width="40">
-                    <span class="h5">CRM</span>
+                <a href="../soporte/soporte.php" class="card-body d-flex align-items-center justify-content-start text-decoration-none">
+                    <img src="../../assets/images/atencion-clientes.png" alt="Soporte" class="me-3 img-fluid" width="40">
+                    <span class="h5">Soporte</span>
                 </a>
             </div>
         </div>
     </div>
-
-    <!-- Verificar permisos para Clientes -->
-    <?php if (isset($permisos['Clientes']) && in_array('lectura', $permisos['Clientes'])): ?>
-        <a href="../modules/clientes/clientes.php" class="btn btn-primary">Ver Clientes</a>
-    <?php endif; ?>
-
-    <?php if (isset($permisos['Clientes']) && in_array('escritura', $permisos['Clientes'])): ?>
-        <a href="../modules/clientes/editar_clientes.php" class="btn btn-secondary">Editar Clientes</a>
-    <?php endif; ?>
 </div>
 
 <?php

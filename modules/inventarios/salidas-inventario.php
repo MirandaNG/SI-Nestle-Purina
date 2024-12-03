@@ -61,8 +61,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['registrar_salida'])) {
                         <td><?php echo htmlspecialchars($salida['inv_sal_destino']); ?></td>
                         <td><?php echo htmlspecialchars($salida['motivo_nombre']); ?></td>
                         <td>
-                            <a href="editar-salida.php?id=<?php echo $salida['inv_sal_id']; ?>" class="btn btn-warning btn-sm">Editar</a>
-                            <a href="eliminar-salida.php?id=<?php echo $salida['inv_sal_id']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de eliminar esta salida?');">Eliminar</a>
+                            <?php if (is_null($salida['transfe_id'])): ?>
+                                <a href="editar-salida.php?id=<?php echo $salida['inv_sal_id']; ?>" class="btn btn-warning btn-sm">Editar</a>
+                                <a href="eliminar-salida.php?id=<?php echo $salida['inv_sal_id']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de eliminar esta salida?');">Eliminar</a>
+                            <?php else: ?>
+                                <span class="text-muted">Acciones no disponibles</span>
+                            <?php endif; ?>
                         </td>
                     </tr>
                 <?php endwhile; ?>

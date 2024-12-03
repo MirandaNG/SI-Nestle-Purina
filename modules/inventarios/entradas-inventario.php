@@ -60,8 +60,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['registrar_entrada'])) 
                         <td><?php echo htmlspecialchars($entrada['inv_entra_proveedor']); ?></td>
                         <td><?php echo htmlspecialchars($entrada['motivo_nombre']); ?></td>
                         <td>
-                            <a href="editar-entrada.php?id=<?php echo $entrada['inv_entra_id']; ?>" class="btn btn-warning btn-sm">Editar</a>
-                            <a href="eliminar-entrada.php?id=<?php echo $entrada['inv_entra_id']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de eliminar esta entrada?');">Eliminar</a>
+                            <?php if (is_null($entrada['transfe_id'])): ?>
+                                <a href="editar-entrada.php?id=<?php echo $entrada['inv_entra_id']; ?>" class="btn btn-warning btn-sm">Editar</a>
+                                <a href="eliminar-entrada.php?id=<?php echo $entrada['inv_entra_id']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de eliminar esta entrada?');">Eliminar</a>
+                            <?php else: ?>
+                                <span class="text-muted">Acciones no disponibles</span>
+                            <?php endif; ?>
                         </td>
                     </tr>
                 <?php endwhile; ?>

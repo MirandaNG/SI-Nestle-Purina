@@ -15,19 +15,22 @@
 
     // Llamada para obtener la lista de clientes
     $clientes = obtener_clientes($conexion);
+
     // Si el usuario envía el formulario para crear un cliente
     if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['crear_cliente'])) {
-        $clt_nombre = $_POST['clt_nombre'];
-        $clt_direccion = $_POST['clt_direccion'];
-        $clt_telefono = $_POST['clt_telefono'];
-        $clt_email = $_POST['clt_email'];
-        $clt_tipo = $_POST['clt_tipo'];
+        $nombre = $_POST['clt_nombre'];
+        $contacto = $_POST['clt_contacto'];
+        $direccion = $_POST['clt_direccion'];
+        $telefono = $_POST['clt_telefono'];
+        $email = $_POST['clt_email'];
+        $tipo = $_POST['clt_tipo'];
 
-        $resultado = crear_cliente($clt_nombre, $clt_direccion, $clt_telefono, $clt_email, $clt_tipo, $conexion);
+        $resultado = agregar_cliente($nombre, $contacto, $direccion, $telefono, $email, $tipo, $conexion);
         if ($resultado) {
-            echo "Cliente creado con éxito";
+            header('Location: clientes.php?mensaje=Cliente registrado con éxito');
+            exit();
         } else {
-            echo "Error al crear cliente";
+            echo "Error al registrar cliente";
         }
     }
 ?>
@@ -45,32 +48,27 @@
             <thead>
                 <tr>
                     <th>Nombre</th>
+                    <th>Contacto</th>
                     <th>Dirección</th>
                     <th>Teléfono</th>
-                    <th>Correo</th>
+                    <th>Email</th>
                     <th>Tipo</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
-                <?php while ($cliente = mysqli_fetch_assoc($result)): ?>
+                <?php while ($cliente = mysqli_fetch_assoc($clientes)): ?>
                     <tr>
                         <td><?php echo htmlspecialchars($cliente['clt_nombre']); ?></td>
+                        <td><?php echo htmlspecialchars($cliente['clt_contacto']); ?></td>
                         <td><?php echo htmlspecialchars($cliente['clt_direccion']); ?></td>
                         <td><?php echo htmlspecialchars($cliente['clt_telefono']); ?></td>
                         <td><?php echo htmlspecialchars($cliente['clt_email']); ?></td>
                         <td><?php echo htmlspecialchars($cliente['clt_tipo']); ?></td>
                         <td>
-                            <!-- Acciones según permisos -->
-                            <?php if (isset($permisos['Clientes']) && in_array('ver', $permisos['Clientes'])): ?>
-                                <a href="ver-cliente.php?id=<?php echo $cliente['id']; ?>" class="btn btn-warning btn-sm">Ver</a>
-                            <?php endif; ?>
-                            <?php if (isset($permisos['Clientes']) && in_array('editar', $permisos['Clientes'])): ?>
-                                <a href="editar-cliente.php?id=<?php echo $cliente['id']; ?>" class="btn btn-warning btn-sm">Editar</a>
-                            <?php endif; ?>
-                            <?php if (isset($permisos['Clientes']) && in_array('eliminar', $permisos['Clientes'])): ?>
-                                <a href="eliminar-cliente.php?id=<?php echo $cliente['id']; ?>" class="btn btn-danger btn-sm">Eliminar</a>
-                            <?php endif; ?>
+                            <a href="ver-cliente.php?id=<?php echo $cliente['clt_id']; ?>" class="btn btn-primary btn-sm">Ver</a>
+                            <a href="editar-cliente.php?id=<?php echo $cliente['clt_id']; ?>" class="btn btn-warning btn-sm">Editar</a>
+                            <a href="eliminar-cliente.php?id=<?php echo $cliente['clt_id']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de eliminar este cliente?');">Eliminar</a>
                         </td>
                     </tr>
                 <?php endwhile; ?>

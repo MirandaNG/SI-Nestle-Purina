@@ -40,8 +40,8 @@
         <!-- Card para Gestión de Compras -->
         <div class="col-sm-3 mb-3">
             <div class="card shadow border-0 card-productos">
-                <a href="../modules/productos/productos.php" class="card-body d-flex align-items-center justify-content-start text-decoration-none">
-                    <img src="../../assets/images/products.png" alt="Productos" class="me-3 img-fluid" width="40">
+                <a href="../compras/compras.php" class="card-body d-flex align-items-center justify-content-start text-decoration-none">
+                    <img src="../../assets/images/compras.png" alt="Compras" class="me-3 img-fluid" width="40">
                     <span class="h5">Gestión de Compras</span>
                 </a>
             </div>
@@ -50,8 +50,8 @@
         <!-- Card para Recursos Humanos -->
         <div class="col-sm-3 mb-3">
             <div class="card shadow border-0 card-proveedores">
-                <a href="../modules/proveedores/proveedores.php" class="card-body d-flex align-items-center justify-content-start text-decoration-none">
-                    <img src="../../assets/images/recursos-humanos-01.png" alt="Proveedores" class="me-3 img-fluid" width="40">
+                <a href="../recursos-humanos/recursos_humanos.php" class="card-body d-flex align-items-center justify-content-start text-decoration-none">
+                    <img src="../../assets/images/recursos-humanos-01.png" alt="Recursos-Humanos" class="me-3 img-fluid" width="40">
                     <span class="h5">Recursos Humanos</span>
                 </a>
             </div>
@@ -60,8 +60,8 @@
         <!-- Card para Marketing -->
         <div class="col-sm-3 mb-3">
             <div class="card shadow border-0 card-ventas">
-                <a href="../ventas/ventas.php" class="card-body d-flex align-items-center justify-content-start text-decoration-none">
-                    <img src="../../assets/images/ventas.png" alt="Ventas" class="me-3 img-fluid" width="40">
+                <a href="../marketing/marketing.php" class="card-body d-flex align-items-center justify-content-start text-decoration-none">
+                    <img src="../../assets/images/marketing.png" alt="Marketing" class="me-3 img-fluid" width="40">
                     <span class="h5">Marketing</span>
                 </a>
             </div>
@@ -70,8 +70,8 @@
         <!-- Card para Finanzas y Contabilidad -->
         <div class="col-sm-3 mb-3">
             <div class="card shadow border-0 card-inventarios">
-                <a href="../inventarios/inventarios.php" class="card-body d-flex align-items-center justify-content-start text-decoration-none">
-                    <img src="../../assets/images/inventarios.png" alt="Inventarios" class="me-3 img-fluid" width="40">
+                <a href="../finanzas/finanzas.php" class="card-body d-flex align-items-center justify-content-start text-decoration-none">
+                    <img src="../../assets/images/finanzas.png" alt="Finanzas" class="me-3 img-fluid" width="40">
                     <span class="h5">Finanzas y Contabilidad</span>
                 </a>
             </div>
@@ -80,8 +80,8 @@
         <!-- Card para Log y Seguridad -->
         <div class="col-sm-3 mb-3">
             <div class="card shadow border-0 card-productos">
-                <a href="../modules/productos/productos.php" class="card-body d-flex align-items-center justify-content-start text-decoration-none">
-                    <img src="../../assets/images/products.png" alt="Productos" class="me-3 img-fluid" width="40">
+                <a href="../seguridad/seguridad.php" class="card-body d-flex align-items-center justify-content-start text-decoration-none">
+                    <img src="../../assets/images/seguridad.png" alt="Seguridad" class="me-3 img-fluid" width="40">
                     <span class="h5">Log y Seguridad</span>
                 </a>
             </div>
@@ -90,8 +90,8 @@
         <!-- Card para Productos -->
         <div class="col-sm-3 mb-3">
             <div class="card shadow border-0 card-proveedores">
-                <a href="../modules/proveedores/proveedores.php" class="card-body d-flex align-items-center justify-content-start text-decoration-none">
-                    <img src="../../assets/images/proveedores.png" alt="Proveedores" class="me-3 img-fluid" width="40">
+                <a href="../productos/productos.php" class="card-body d-flex align-items-center justify-content-start text-decoration-none">
+                    <img src="../../assets/images/pet-food.png" alt="Productos" class="me-3 img-fluid" width="40">
                     <span class="h5">Productos</span>
                 </a>
             </div>
@@ -111,7 +111,7 @@
         <div class="col-sm-3 mb-3">
             <div class="card shadow border-0 card-proveedores">
                 <a href="../modules/proveedores/proveedores.php" class="card-body d-flex align-items-center justify-content-start text-decoration-none">
-                    <img src="../../assets/images/proveedores.png" alt="Proveedores" class="me-3 img-fluid" width="40">
+                    <img src="../../assets/images/admin-acciones.png" alt="Accion-Admin" class="me-3 img-fluid" width="40">
                     <span class="h5">Acciones Administrador</span>
                 </a>
             </div>

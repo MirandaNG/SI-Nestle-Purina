@@ -105,61 +105,123 @@ function registrar_transferencia($inv_id, $origen_id, $destino_id, $cantidad, $f
     // Define el motivo_id correspondiente a "Transferencia"
     $motivo_id_transferencia = 3; // Este es el motivo_id para 'Transferencia' en la tabla 'motivos'
 
-    if ($nombre_origen === 'Nestlé Purina Silao') {
-        // Es una salida
-        registrar_salida_inventario($inv_id, $cantidad, $fecha, $nombre_destino, $motivo_id_transferencia, $conexion);
-    } elseif ($nombre_destino === 'Nestlé Purina Silao') {
-        // Es una entrada
-        registrar_entrada_inventario($inv_id, $cantidad, $fecha, $nombre_origen, $motivo_id_transferencia, $conexion);
-    }
-
     // Registrar la transferencia en la tabla de transferencias
     $query = "INSERT INTO transferencias (inv_id, origen_id, destino_id, transfe_cantidad, transfe_fecha) 
               VALUES (?, ?, ?, ?, ?)";
     $stmt = mysqli_prepare($conexion, $query);
     mysqli_stmt_bind_param($stmt, 'iiids', $inv_id, $origen_id, $destino_id, $cantidad, $fecha);
 
-    return mysqli_stmt_execute($stmt);
+    if (!$stmt->execute()) {
+        return "Error al registrar la transferencia: " . $stmt->error;
+    }
+
+    // Obtener el transfe_id generado automáticamente
+    $transfe_id = mysqli_insert_id($conexion);
+
+    // Si el origen es 'Nestlé Purina Silao', es una salida
+    if ($nombre_origen === 'Nestlé Purina Silao') {
+        registrar_salida_inventario($inv_id, $cantidad, $fecha, $nombre_destino, $motivo_id_transferencia, $transfe_id, $conexion);
+    } 
+    // Si el destino es 'Nestlé Purina Silao', es una entrada
+    elseif ($nombre_destino === 'Nestlé Purina Silao') {
+        registrar_entrada_inventario($inv_id, $cantidad, $fecha, $nombre_origen, $motivo_id_transferencia, $transfe_id, $conexion);
+    }
+
+    return "Transferencia registrada correctamente con transfe_id: $transfe_id";
 }
 
 
 // Editar una transferencia
 function editar_transferencia($transfe_id, $inv_id, $origen_id, $destino_id, $cantidad, $fecha, $conexion) {
-    // Obtén los nombres de las ubicaciones origen y destino
-    $nombre_origen = obtener_nombre_ubicacion($origen_id, $conexion);
-    $nombre_destino = obtener_nombre_ubicacion($destino_id, $conexion);
+    // Iniciar transacción para consistencia
+    $conexion->begin_transaction();
 
-    // Define el motivo_id correspondiente a "Transferencia"
-    $motivo_id_transferencia = 3; // 'Transferencia'
+    try {
+        // Actualizar la transferencia
+        $query_actualizar_transferencia = "UPDATE transferencias 
+                                           SET inv_id = ?, origen_id = ?, destino_id = ?, transfe_cantidad = ?, transfe_fecha = ? 
+                                           WHERE transfe_id = ?";
+        $stmt_transferencia = $conexion->prepare($query_actualizar_transferencia);
+        $stmt_transferencia->bind_param('iiidsi', $inv_id, $origen_id, $destino_id, $cantidad, $fecha, $transfe_id);
+        if (!$stmt_transferencia->execute()) {
+            throw new Exception("Error al actualizar la transferencia: " . $stmt_transferencia->error);
+        }
 
-    // Si el origen es 'Nestlé Purina Silao', es una salida
-    if ($nombre_origen === 'Nestlé Purina Silao') {
-        editar_salida_inventario($transfe_id, $inv_id, $cantidad, $fecha, $nombre_destino, $motivo_id_transferencia, $conexion);
-    }
-    // Si el destino es 'Nestlé Purina Silao', es una entrada
-    elseif ($nombre_destino === 'Nestlé Purina Silao') {
-        editar_entrada_inventario($transfe_id, $inv_id, $cantidad, $fecha, $nombre_origen, $motivo_id_transferencia, $conexion);
+        // Obtener el nombre de las ubicaciones
+        $nombre_origen = obtener_nombre_ubicacion($origen_id, $conexion);
+        $nombre_destino = obtener_nombre_ubicacion($destino_id, $conexion);
+
+        // Define el motivo para "Transferencia"
+        $motivo_id_transferencia = 3;
+
+        // Actualizar entrada y salida asociadas
+        if ($nombre_origen === 'Nestlé Purina Silao') {
+            // Es una salida desde el origen
+            $query_salida_id = "SELECT inv_sal_id FROM inventario_salidas WHERE transfe_id = ?";
+            $stmt_salida_id = $conexion->prepare($query_salida_id);
+            $stmt_salida_id->bind_param('i', $transfe_id);
+            $stmt_salida_id->execute();
+            $salida = $stmt_salida_id->get_result()->fetch_assoc();
+            if ($salida) {
+                editar_salida_inventario($salida['inv_sal_id'], $inv_id, $cantidad, $fecha, $nombre_destino, $motivo_id_transferencia, $conexion);
+            }
+        }
+
+        if ($nombre_destino === 'Nestlé Purina Silao') {
+            // Es una entrada al destino
+            $query_entrada_id = "SELECT inv_entra_id FROM inventario_entradas WHERE transfe_id = ?";
+            $stmt_entrada_id = $conexion->prepare($query_entrada_id);
+            $stmt_entrada_id->bind_param('i', $transfe_id);
+            $stmt_entrada_id->execute();
+            $entrada = $stmt_entrada_id->get_result()->fetch_assoc();
+            if ($entrada) {
+                editar_entrada_inventario($entrada['inv_entra_id'], $inv_id, $cantidad, $fecha, $nombre_origen, $motivo_id_transferencia, $conexion);
+            }
+        }
+
+        // Confirmar transacción
+        $conexion->commit();
+        return "Transferencia, entrada y salida actualizadas correctamente.";
+    } catch (Exception $e) {
+        // Revertir transacción en caso de error
+        $conexion->rollback();
+        return "Error al editar la transferencia: " . $e->getMessage();
     }
 }
 
 // Eliminar una transferencia
 function eliminar_transferencia($transfe_id, $conexion) {
-    // Primero obtenemos los registros correspondientes en entradas y salidas
-    $entrada = obtener_entrada_por_transferencia($transfe_id, $conexion);
-    $salida = obtener_salida_por_transferencia($transfe_id, $conexion);
+    // Iniciar transacción
+    $conexion->begin_transaction();
 
-    // Eliminar de las tablas de entradas y salidas
-    if ($entrada) {
-        eliminar_entrada_inventario($entrada['inv_entra_id'], $conexion);
-    }
-    if ($salida) {
-        eliminar_salida_inventario($salida['inv_sal_id'], $conexion);
-    }
+    try {
+        // Obtener registros de entradas y salidas asociadas
+        $entrada = obtener_entrada_por_transferencia($transfe_id, $conexion);
+        $salida = obtener_salida_por_transferencia($transfe_id, $conexion);
 
-    // Ahora elimina la transferencia
-    $query = "DELETE FROM transferencias WHERE transfe_id = ?";
-    $stmt = mysqli_prepare($conexion, $query);
-    mysqli_stmt_bind_param($stmt, 'i', $transfe_id);
-    return mysqli_stmt_execute($stmt);
+        // Eliminar de las tablas de entradas y salidas
+        if ($entrada) {
+            eliminar_entrada_inventario($entrada['inv_entra_id'], $conexion);
+        }
+        if ($salida) {
+            eliminar_salida_inventario($salida['inv_sal_id'], $conexion);
+        }
+
+        // Eliminar la transferencia
+        $query = "DELETE FROM transferencias WHERE transfe_id = ?";
+        $stmt = mysqli_prepare($conexion, $query);
+        mysqli_stmt_bind_param($stmt, 'i', $transfe_id);
+        if (!$stmt->execute()) {
+            throw new Exception("Error al eliminar la transferencia: " . $conexion->error);
+        }
+
+        // Confirmar transacción
+        $conexion->commit();
+        return "Transferencia y registros asociados eliminados correctamente.";
+    } catch (Exception $e) {
+        // Revertir transacción en caso de error
+        $conexion->rollback();
+        return "Error al eliminar la transferencia: " . $e->getMessage();
+    }
 }
 ?>
