@@ -1,46 +1,44 @@
 <?php
-    session_start();
-    if (!isset($_SESSION['usuario'])) {
-        header('Location: ../usuarios/login.php');
-        exit();
-    }
+session_start();
+if (!isset($_SESSION['usuario'])) {
+    header('Location: ../usuarios/login.php');
+    exit();
+}
 
-    include '../../config/conexion.php';
-    include '../../includes/header.php';
-    include '../../functions/CRUD/productos_functions.php';
+include '../../config/conexion.php';
+include '../../includes/header.php';
+include '../../functions/CRUD/productos_functions.php';
 
-// Si el usuario envía el formulario para registrar un producto
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['registrar_producto'])) {
+// Si se envió el formulario
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nombre = $_POST['prod_nombre'];
     $descripcion = $_POST['prod_descripcion'];
     $precio = $_POST['prod_precio'];
-    $especie = $_POST['esp_id'];
-    $tipo_comida = $_POST['tip_com_id'];
-    $etapa_vida = $_POST['etpa_vida_id'];
+    $especie_id = $_POST['esp_id'];
+    $tipo_comida_id = $_POST['tip_com_id'];
+    $etapa_vida_id = $_POST['etpa_vida_id'];
     $marca = $_POST['prod_marca'];
 
-    $resultado = registrar_producto($nombre, $descripcion, $precio, $especie, $tipo_comida, $etapa_vida, $marca, $conexion);
-    if ($resultado) {
-        header('Location: productos.php?mensaje=Producto registrado con éxito');
+    if (agregar_producto($conexion, $nombre, $descripcion, $precio, $especie_id, $tipo_comida_id, $etapa_vida_id, $marca)) {
+        header('Location: productos.php?mensaje=Producto agregado con éxito');
         exit();
     } else {
-        echo "Error al registrar producto.";
+        echo "<div class='alert alert-danger'>Error al agregar el producto.</div>";
     }
 }
 ?>
 
 <div id="page-content-wrapper">
     <div class="container mt-5">
-        <h1 class="mb-4">Registrar Producto</h1>
-        <!-- Formulario de Producto -->
-        <form method="POST" action="">
+        <h1 class="mb-4">Agregar Producto</h1>
+        <form method="POST">
             <div class="mb-3">
-                <label for="prod_nombre" class="form-label">Nombre del Producto</label>
+                <label for="prod_nombre" class="form-label">Nombre</label>
                 <input type="text" class="form-control" id="prod_nombre" name="prod_nombre" required>
             </div>
             <div class="mb-3">
                 <label for="prod_descripcion" class="form-label">Descripción</label>
-                <textarea class="form-control" id="prod_descripcion" name="prod_descripcion"></textarea>
+                <textarea class="form-control" id="prod_descripcion" name="prod_descripcion" rows="3"></textarea>
             </div>
             <div class="mb-3">
                 <label for="prod_precio" class="form-label">Precio</label>
@@ -48,34 +46,40 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['registrar_producto']))
             </div>
             <div class="mb-3">
                 <label for="esp_id" class="form-label">Especie</label>
-                <select id="esp_id" name="esp_id" class="form-select" required>
+                <select class="form-select" id="esp_id" name="esp_id" required>
                     <option value="">Seleccione una especie</option>
                     <?php
-                    $especies = obtener_especies($conexion); // Función para obtener las especies
+                    $especies = obtener_especies($conexion);
                     while ($especie = mysqli_fetch_assoc($especies)): ?>
-                        <option value="<?php echo $especie['esp_id']; ?>"><?php echo $especie['esp_nombre']; ?></option>
-                    <?php endwhile; ?>
-                </select>
-            </div>
-            <div class="mb-3">
-                <label for="etpa_vida_id" class="form-label">Etapa de Vida</label>
-                <select id="etpa_vida_id" name="etpa_vida_id" class="form-select" required>
-                    <option value="">Seleccione una etapa</option>
-                    <?php
-                    $etapas = obtener_etapas($conexion); // Función para obtener las etapas
-                    while ($etapa = mysqli_fetch_assoc($etapas)): ?>
-                        <option value="<?php echo $etapa['etpa_vida_id']; ?>"><?php echo $etapa['etpa_vida_nombre']; ?></option>
+                        <option value="<?php echo $especie['esp_id']; ?>">
+                            <?php echo $especie['esp_nombre']; ?>
+                        </option>
                     <?php endwhile; ?>
                 </select>
             </div>
             <div class="mb-3">
                 <label for="tip_com_id" class="form-label">Tipo de Comida</label>
-                <select id="tip_com_id" name="tip_com_id" class="form-select" required>
+                <select class="form-select" id="tip_com_id" name="tip_com_id" required>
                     <option value="">Seleccione un tipo de comida</option>
                     <?php
-                    $tipos = obtener_tipos($conexion); // Función para obtener los tipos de comida
-                    while ($tipo = mysqli_fetch_assoc($tipos)): ?>
-                        <option value="<?php echo $tipo['tip_com_id']; ?>"><?php echo $tipo['tip_com_nombre']; ?></option>
+                    $tipos_comida = obtener_tipos_comida($conexion);
+                    while ($tipo = mysqli_fetch_assoc($tipos_comida)): ?>
+                        <option value="<?php echo $tipo['tip_com_id']; ?>">
+                            <?php echo $tipo['tip_com_nombre']; ?>
+                        </option>
+                    <?php endwhile; ?>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="etpa_vida_id" class="form-label">Etapa de Vida</label>
+                <select class="form-select" id="etpa_vida_id" name="etpa_vida_id" required>
+                    <option value="">Seleccione una etapa de vida</option>
+                    <?php
+                    $etapas_vida = obtener_etapas_vida($conexion);
+                    while ($etapa = mysqli_fetch_assoc($etapas_vida)): ?>
+                        <option value="<?php echo $etapa['etpa_vida_id']; ?>">
+                            <?php echo $etapa['etpa_vida_nombre']; ?>
+                        </option>
                     <?php endwhile; ?>
                 </select>
             </div>
@@ -83,9 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['registrar_producto']))
                 <label for="prod_marca" class="form-label">Marca</label>
                 <input type="text" class="form-control" id="prod_marca" name="prod_marca" required>
             </div>
-
-            <button type="submit" id="registrar_producto" class="btn btn-primary">Agregar Producto</button>
-            <a href="productos.php" class="btn btn-secondary">Cancelar</a>
+            <button type="submit" class="btn btn-success">Agregar Producto</button>
         </form>
     </div>
 </div>

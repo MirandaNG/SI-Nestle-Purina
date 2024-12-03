@@ -66,7 +66,6 @@
                         <td><?php echo htmlspecialchars($cliente['clt_email']); ?></td>
                         <td><?php echo htmlspecialchars($cliente['clt_tipo']); ?></td>
                         <td>
-                            <a href="ver-cliente.php?id=<?php echo $cliente['clt_id']; ?>" class="btn btn-primary btn-sm">Ver</a>
                             <a href="editar-cliente.php?id=<?php echo $cliente['clt_id']; ?>" class="btn btn-warning btn-sm">Editar</a>
                             <a href="eliminar-cliente.php?id=<?php echo $cliente['clt_id']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de eliminar este cliente?');">Eliminar</a>
                         </td>

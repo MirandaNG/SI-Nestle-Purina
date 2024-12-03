@@ -20,7 +20,7 @@
     <div class="row">
         <!-- Card para Clientes -->
         <div class="col-sm-3 mb-3">
-            <div class="card shadow border-0 card-clientes">
+            <div class="card shadow border-0 card-tres">
                 <a href="../clientes/clientes.php" class="card-body d-flex align-items-center justify-content-start text-decoration-none">
                     <img src="../../assets/images/clientes.png" alt="Clientes" class="me-3 img-fluid" width="40">
                     <span class="h5">Clientes</span>
@@ -30,7 +30,7 @@
 
         <!-- Card para Pedidos -->
         <div class="col-sm-3 mb-3">
-            <div class="card shadow border-0 card-salidas">
+            <div class="card shadow border-0 card-ocho">
                 <a href="../pedidos/pedidos.php" class="card-body d-flex align-items-center justify-content-start text-decoration-none">
                     <img src="../../assets/images/pedidos.png" alt="Pedidos" class="me-3 img-fluid" width="40">
                     <span class="h5">Pedidos</span>
@@ -38,19 +38,9 @@
             </div>
         </div>
 
-        <!-- Card para Facturación -->
-        <div class="col-sm-3 mb-3">
-            <div class="card shadow border-0 card-productos">
-                <a href="../facturas/facturas_ventas.php" class="card-body d-flex align-items-center justify-content-start text-decoration-none">
-                    <img src="../../assets/images/facturas.png" alt="Facturacion" class="me-3 img-fluid" width="40">
-                    <span class="h5">Facturación</span>
-                </a>
-            </div>
-        </div>
-
         <!-- Card para Soporte -->
         <div class="col-sm-3 mb-3">
-            <div class="card shadow border-0 card-proveedores">
+            <div class="card shadow border-0 card-seis">
                 <a href="../soporte/soporte.php" class="card-body d-flex align-items-center justify-content-start text-decoration-none">
                     <img src="../../assets/images/atencion-clientes.png" alt="Soporte" class="me-3 img-fluid" width="40">
                     <span class="h5">Soporte</span>

@@ -1,4 +1,8 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 session_start();
 if (!isset($_SESSION['usuario'])) {
     header('Location: ../usuarios/login.php');
@@ -9,8 +13,7 @@ include '../../config/conexion.php';
 include '../../includes/header.php';
 include '../../functions/CRUD/facturas_functions.php';
 include '../../functions/CRUD/clientes_functions.php';
-include '../../functions/CRUD/proveedores_functions.php';
-include '../../functions/CRUD/metodos_pago_functions.php';
+include '../../functions/CRUD/proveedores_functions.php';;
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['registrar_factura'])) {
     $tipo = $_POST['tipo'];
@@ -135,3 +138,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['registrar_factura'])) 
 </script>
 
 <?php include '../../includes/footer.php'; ?>
+
+
+
+Warning: include(../../functions/CRUD/metodos_pago_functions.php): Failed to open stream: No such file or directory in C:\MAMP\htdocs\SI-Nestle-Purina\modules\facturas\agregar_factura.php on line 17
+
+Warning: include(): Failed opening '../../functions/CRUD/metodos_pago_functions.php' for inclusion (include_path='.;C:\php\pear') in C:\MAMP\htdocs\SI-Nestle-Purina\modules\facturas\agregar_factura.php on line 17

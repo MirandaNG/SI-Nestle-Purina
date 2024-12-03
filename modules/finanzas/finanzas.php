@@ -20,7 +20,7 @@
     <div class="row">
         <!-- Card para Facturas -->
         <div class="col-sm-3 mb-3">
-            <div class="card shadow border-0 card-clientes">
+            <div class="card shadow border-0 card-uno">
                 <a href="../facturas/facturas.php" class="card-body d-flex align-items-center justify-content-start text-decoration-none">
                     <img src="../../assets/images/facturas.png" alt="Facturas" class="me-3 img-fluid" width="40">
                     <span class="h5">Facturas</span>
@@ -30,7 +30,7 @@
 
         <!-- Card para Pagos -->
         <div class="col-sm-3 mb-3">
-            <div class="card shadow border-0 card-salidas">
+            <div class="card shadow border-0 card-cuatro">
                 <a href="pagos.php" class="card-body d-flex align-items-center justify-content-start text-decoration-none">
                     <img src="../../assets/images/pagos.png" alt="Pagos" class="me-3 img-fluid" width="40">
                     <span class="h5">Pagos</span>
@@ -40,7 +40,7 @@
 
         <!-- Card para Gastos -->
         <div class="col-sm-3 mb-3">
-            <div class="card shadow border-0 card-productos">
+            <div class="card shadow border-0 card-seis">
                 <a href="gastos.php" class="card-body d-flex align-items-center justify-content-start text-decoration-none">
                     <img src="../../assets/images/gastos.png" alt="Gastos" class="me-3 img-fluid" width="40">
                     <span class="h5">Gastos</span>
@@ -50,7 +50,7 @@
 
         <!-- Card para Reportes -->
         <div class="col-sm-3 mb-3">
-            <div class="card shadow border-0 card-proveedores">
+            <div class="card shadow border-0 card-nueve">
                 <a href="reportes.php" class="card-body d-flex align-items-center justify-content-start text-decoration-none">
                     <img src="../../assets/images/reportes.png" alt="Resportes" class="me-3 img-fluid" width="40">
                     <span class="h5">Reportes</span>

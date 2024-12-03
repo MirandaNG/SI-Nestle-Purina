@@ -110,25 +110,6 @@ body {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
-/* Estilo para el cuerpo de las tarjetas */
-.card-ventas {
-    background-color: #86a744;
-    color: white;
-}
-
-.card-ventas:hover {
-    background-color: #a0c459;
-}
-
-.card-inventarios {
-    background-color: #b213dc;
-    color: white;
-}
-
-.card-inventarios:hover {
-    background-color: #bd2ae6;
-}
-
 .card-body {
     display: flex;
     align-items: center;
@@ -152,41 +133,96 @@ body {
     margin: 0;
 }
 
-/* Colores de las tarjetas */
-.card-clientes {
+/* Estilo para el cuerpo de las tarjetas */
+.card-uno {
+    background-color: #86a744;
+    color: white;
+}
+
+.card-uno:hover {
+    background-color: #a0c459;
+}
+
+.card-dos {
+    background-color: #b213dc;
+    color: white;
+}
+
+.card-dos:hover {
+    background-color: #bd2ae6;
+}
+
+.card-tres {
     background-color: #007bff;
     color: white;
 }
 
-.card-clientes:hover {
+.card-tres:hover {
     background-color: #0056b3;
 }
 
-.card-productos {
+.card-cuatro {
     background-color: #28a745;
     color: white;
 }
 
-.card-productos:hover {
+.card-cuatro:hover {
     background-color: #218838;
 }
 
-.card-salidas {
+.card-cinco {
     background-color: #e81c24;
     color: white;
 }
 
-.card-salidas:hover {
+.card-cinco:hover {
     background-color: #c1272d;
 }
 
-.card-proveedores {
+.card-seis {
     background-color: #17a2b8;
     color: white;
 }
 
-.card-proveedores:hover {
+.card-seis:hover {
     background-color: #138496;
+}
+
+.card-siete {
+    background-color: darkslategrey;
+    color: white;
+}
+
+.card-siete:hover {
+    background-color: #426969;
+}
+
+.card-ocho {
+    background-color: #696900;
+    color: white;
+}
+
+.card-ocho:hover {
+    background-color: #757511;
+}
+
+.card-nueve {
+    background-color: firebrick;
+    color: white;
+}
+
+.card-nueve:hover {
+    background-color: #c93535;
+}
+
+.card-diez {
+    background-color: goldenrod;
+    color: white;
+}
+
+.card-diez:hover {
+    background-color: #dbaf3e;
+    color: whitesmoke;
 }
 
 /* Estilos para las pestañas */

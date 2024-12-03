@@ -20,7 +20,7 @@
     <div class="row">
         <!-- Card para Empleados -->
         <div class="col-sm-3 mb-3">
-            <div class="card shadow border-0 card-clientes">
+            <div class="card shadow border-0 card-seis">
                 <a href="../empleados/empleados.php" class="card-body d-flex align-items-center justify-content-start text-decoration-none">
                     <img src="../../assets/images/empleados.png" alt="Empleados" class="me-3 img-fluid" width="40">
                     <span class="h5">Empleados</span>
@@ -30,7 +30,7 @@
 
         <!-- Card para Asistencias -->
         <div class="col-sm-3 mb-3">
-            <div class="card shadow border-0 card-salidas">
+            <div class="card shadow border-0 card-nueve">
                 <a href="asistencias.php" class="card-body d-flex align-items-center justify-content-start text-decoration-none">
                     <img src="../../assets/images/asistencias.png" alt="Asistencias" class="me-3 img-fluid" width="40">
                     <span class="h5">Asistencias</span>
@@ -40,7 +40,7 @@
 
         <!-- Card para Nómina -->
         <div class="col-sm-3 mb-3">
-            <div class="card shadow border-0 card-productos">
+            <div class="card shadow border-0 card-diez">
                 <a href="nominas.php" class="card-body d-flex align-items-center justify-content-start text-decoration-none">
                     <img src="../../assets/images/nominas.png" alt="Nomina" class="me-3 img-fluid" width="40">
                     <span class="h5">Nómina</span>
@@ -50,7 +50,7 @@
 
         <!-- Card para Evaluaciones -->
         <div class="col-sm-3 mb-3">
-            <div class="card shadow border-0 card-proveedores">
+            <div class="card shadow border-0 card-ocho">
                 <a href="evaluaciones.php" class="card-body d-flex align-items-center justify-content-start text-decoration-none">
                     <img src="../../assets/images/evaluaciones.png" alt="Evaluaciones" class="me-3 img-fluid" width="40">
                     <span class="h5">Evaluaciones</span>

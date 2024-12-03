@@ -20,7 +20,7 @@
     <div class="row">
         <!-- Card para Campañas de Marketing -->
         <div class="col-sm-3 mb-3">
-            <div class="card shadow border-0 card-clientes">
+            <div class="card shadow border-0 card-ocho">
                 <a href="campanas.php" class="card-body d-flex align-items-center justify-content-start text-decoration-none">
                     <img src="../../assets/images/campanas.png" alt="Campanas" class="me-3 img-fluid" width="40">
                     <span class="h5">Campañas de Marketing</span>
@@ -30,7 +30,7 @@
 
         <!-- Card para Resultados -->
         <div class="col-sm-3 mb-3">
-            <div class="card shadow border-0 card-salidas">
+            <div class="card shadow border-0 card-cinco">
                 <a href="resultados.php" class="card-body d-flex align-items-center justify-content-start text-decoration-none">
                     <img src="../../assets/images/resultados.png" alt="Resultados" class="me-3 img-fluid" width="40">
                     <span class="h5">Resultados</span>

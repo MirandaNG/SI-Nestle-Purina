@@ -18,7 +18,7 @@ $facturas = obtener_todas_facturas($conexion);
         <h1 class="mb-4">Facturas</h1>
 
         <div class="mb-3">
-            <a href="agregar-factura.php" class="btn btn-success mb-3">Agregar Factura</a>
+            <a href="agregar_factura.php" class="btn btn-success mb-3">Agregar Factura</a>
         </div>
 
         <!-- Tabla de Facturas -->
@@ -36,7 +36,7 @@ $facturas = obtener_todas_facturas($conexion);
             <tbody>
                 <?php while ($factura = $facturas->fetch_assoc()) : ?>
                     <tr>
-                        <td><?php echo $factura['clt_nombre']; ?></td>
+                        <td><?php echo $factura['nombre_cliente_o_proveedor']; ?></td>
                         <td><?php echo $factura['fact_folio']; ?></td>
                         <td><?php echo $factura['fact_fecha']; ?></td>
                         <td><?php echo $factura['fact_total']; ?></td>

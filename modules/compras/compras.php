@@ -20,7 +20,7 @@
     <div class="row">
         <!-- Card para Proveedores -->
         <div class="col-sm-3 mb-3">
-            <div class="card shadow border-0 card-clientes">
+            <div class="card shadow border-0 card-ocho">
                 <a href="../proveedores/proveedores.php" class="card-body d-flex align-items-center justify-content-start text-decoration-none">
                     <img src="../../assets/images/proveedores.png" alt="Proveedores" class="me-3 img-fluid" width="40">
                     <span class="h5">Proveedores</span>
@@ -30,7 +30,7 @@
 
         <!-- Card para Compras -->
         <div class="col-sm-3 mb-3">
-            <div class="card shadow border-0 card-salidas">
+            <div class="card shadow border-0 card-nueve">
                 <a href="ordenes_compra.php" class="card-body d-flex align-items-center justify-content-start text-decoration-none">
                     <img src="../../assets/images/compras.png" alt="Compras" class="me-3 img-fluid" width="40">
                     <span class="h5">Compras</span>
@@ -38,19 +38,9 @@
             </div>
         </div>
 
-        <!-- Card para Facturas -->
-        <div class="col-sm-3 mb-3">
-            <div class="card shadow border-0 card-productos">
-                <a href="../facturas/facturas_compras.php" class="card-body d-flex align-items-center justify-content-start text-decoration-none">
-                    <img src="../../assets/images/facturas.png" alt="Facturas" class="me-3 img-fluid" width="40">
-                    <span class="h5">Facturas</span>
-                </a>
-            </div>
-        </div>
-
         <!-- Card para Pagos -->
         <div class="col-sm-3 mb-3">
-            <div class="card shadow border-0 card-proveedores">
+            <div class="card shadow border-0 card-diez">
                 <a href="pagos.php" class="card-body d-flex align-items-center justify-content-start text-decoration-none">
                     <img src="../../assets/images/pagos.png" alt="Pagos" class="me-3 img-fluid" width="40">
                     <span class="h5">Pagos</span>

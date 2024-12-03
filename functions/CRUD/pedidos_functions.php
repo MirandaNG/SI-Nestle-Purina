@@ -35,21 +35,6 @@ function obtener_pedido($pedo_id, $conexion) {
 
 
 // Funciones relacionadas con Clientes
-//  Obtener el historial de compras de un cliente por su ID.
-//      @param int $cliente_id ID del cliente.
-//      @param mysqli $conexion Conexión a la base de datos.
-//      @return mysqli_result|false Resultados de la consulta o false en caso de error.
-function obtener_pedidos_cliente($cliente_id, $conexion) {
-    $query = "SELECT pedo_id, pedo_fecha, pedo_total, pedo_estado 
-              FROM pedidos 
-              WHERE clt_id = ? 
-              ORDER BY pedo_fecha DESC";
-    $stmt = $conexion->prepare($query);
-    $stmt->bind_param('i', $cliente_id);
-    $stmt->execute();
-    return $stmt->get_result();
-}
-
 //  Crear un nuevo pedido.
 function agregar_pedido($clt_id, $productos, $conexion) {
     // Iniciar la transacción
