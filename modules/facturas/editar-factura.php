@@ -10,14 +10,13 @@ include '../../includes/header.php';
 include '../../functions/CRUD/facturas_functions.php';
 include '../../functions/CRUD/clientes_functions.php';
 include '../../functions/CRUD/proveedores_functions.php';
-include '../../functions/CRUD/metodos_pago_functions.php';
 
 // Verificar si se ha pasado el ID de la factura a editar
 if (isset($_GET['id'])) {
-    $fact_id = $_GET['id'];
+    $factura_id = $_GET['id'];
 
     // Obtener los detalles de la factura desde la base de datos
-    $factura = obtener_factura_por_id($fact_id, $conexion);
+    $factura = obtener_factura_por_id($factura_id, $conexion);
     if ($factura) {
         // Variables con los datos actuales de la factura
         $tipo = $factura['fact_tipo'];
@@ -32,6 +31,8 @@ if (isset($_GET['id'])) {
         exit();
     }
 }
+
+$metodos_pago = obtener_metodos_pago($conexion);
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['actualizar_factura'])) {
     $tipo = $_POST['tipo'];
@@ -60,11 +61,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['actualizar_factura']))
             <!-- Tipo de Factura -->
             <div class="mb-3">
                 <label for="tipo" class="form-label">Tipo de Factura</label>
-                <select id="tipo" name="tipo" class="form-select" required onchange="mostrarClienteProveedor()" value="<?php echo $tipo; ?>">
-                    <option value="">Seleccione un tipo</option>
-                    <option value="venta" <?php echo $tipo == 'venta' ? 'selected' : ''; ?>>Venta</option>
-                    <option value="compra" <?php echo $tipo == 'compra' ? 'selected' : ''; ?>>Compra</option>
-                </select>
+                <input type="text" id="tipo" class="form-control" value="<?php echo htmlspecialchars($factura['fact_tipo']); ?>" disabled>
+                <input type="hidden" name="tipo" value="<?php echo $factura['fact_tipo']; ?>">
             </div>
 
             <!-- Cliente o Proveedor (aparece según el tipo de factura) -->
@@ -96,8 +94,42 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['actualizar_factura']))
                 </select>
             </div>
 
-            <!-- Otros campos: Folio, Total, Estado, Método de pago -->
-            <!-- (el resto del formulario es similar al de agregar factura) -->
+            <!-- Folio -->
+            <div class="mb-3">
+                <label for="folio" class="form-label">Folio</label>
+                <input type="text" id="folio" class="form-control" value="<?php echo htmlspecialchars($factura['fact_folio']); ?>" disabled>
+                <input type="hidden" name="folio" value="<?php echo htmlspecialchars($factura['fact_folio']); ?>">
+            </div>
+
+            <!-- Total -->
+            <div class="mb-3">
+                <label for="total" class="form-label">Total</label>
+                <input type="number" step="0.01" id="total" name="total" class="form-control" value="<?php echo ($factura['fact_total']); ?>" required>
+            </div>
+
+            <!-- Estado -->
+            <div class="mb-3">
+                <label for="estado" class="form-label">Estado</label>
+                <select id="estado" name="estado" class="form-select" required>
+                    <option value="pendiente" <?php echo ($factura['fact_estado'] == 'pendiente') ? 'selected' : ''; ?>>Pendiente</option>
+                    <option value="pagado" <?php echo ($factura['fact_estado'] == 'pagado') ? 'selected' : ''; ?>>Pagado</option>
+                </select>
+            </div>
+
+            <!-- Método de pago -->
+            <div class="mb-3">
+                <label for="met_pago_id" class="form-label">Método de Pago</label>
+                <select id="met_pago_id" name="met_pago_id" class="form-select" required>
+                    <option value="">Seleccione un método de pago</option>
+                    <?php
+                    $metodos_pago = obtener_metodos_pago($conexion);
+                    while ($metodo = mysqli_fetch_assoc($metodos_pago)): ?>
+                        <option value="<?php echo htmlspecialchars($metodo['met_pago_id']); ?>">
+                            <?php echo htmlspecialchars($metodo['met_pago_nombre']); ?>
+                        </option>
+                    <?php endwhile; ?>
+                </select>
+            </div>
 
             <button type="submit" name="actualizar_factura" class="btn btn-success mt-4">Actualizar Factura</button>
         </form>

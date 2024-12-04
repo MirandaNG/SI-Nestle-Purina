@@ -26,6 +26,14 @@ function obtener_todas_facturas($conexion) {
     }
 }
 
+function obtener_factura_por_id($factura_id, $conexion) {
+    $query = "SELECT * FROM facturas WHERE fact_id = ?";
+    $stmt = $conexion->prepare($query);
+    $stmt->bind_param('i', $factura_id);
+    $stmt->execute();
+    return $stmt->get_result()->fetch_assoc();
+}
+
 function obtener_metodos_pago($conexion) {
     // Consulta SQL para obtener los métodos de pago
     $query = "SELECT met_pago_id, met_pago_nombre FROM metodos_pago";

@@ -24,24 +24,28 @@ function registrar_empleado($empl_nombre, $empl_apellido, $empl_puesto, $depa_id
 
 // Función para obtener todos los empleados
 function obtener_empleados($conexion) {
-    $query = "SELECT * FROM empleados";
+    $query = "SELECT empleados.empl_nombre, empleados.empl_apellido, empleados.empl_puesto, departamentos.depa_nombre, empleados.empl_salario, empleados.empl_fecha_contrat, empleados.empl_estado
+              FROM empleados
+              JOIN departamentos ON empleados.depa_id = departamentos.depa_id";
     return $conexion->query($query);
 }
 
 // Función para obtener un empleado por su ID
-function obtener_empleado_por_id($empl_id, $conexion) {
-    $query = "SELECT * FROM empleados WHERE empl_id = ?";
+function obtener_empleado_por_id($empleado_id, $conexion) {
+    $query = "SELECT empl_nombre, empl_apellido, empl_puesto, depa_id, empl_salario, empl_fecha_contrat, empl_estado
+              FROM empleados 
+              WHERE empl_id = ?";
     $stmt = $conexion->prepare($query);
-    $stmt->bind_param('i', $empl_id);
+    $stmt->bind_param('i', $empleado_id);
     $stmt->execute();
     return $stmt->get_result()->fetch_assoc();
 }
 
 // Función para actualizar un empleado
-function actualizar_empleado($empl_id, $empl_nombre, $empl_apellido, $empl_puesto, $depa_id, $empl_salario, $empl_fecha_contrat, $empl_estado, $conexion) {
+function actualizar_empleado($empl_id, $nombre, $apellido, $puesto, $departa, $salario, $fecha_contrato, $estado, $conexion) {
     $query = "UPDATE empleados SET empl_nombre = ?, empl_apellido = ?, empl_puesto = ?, depa_id = ?, empl_salario = ?, empl_fecha_contrat = ?, empl_estado = ? WHERE empl_id = ?";
     $stmt = $conexion->prepare($query);
-    $stmt->bind_param('sssiissi', $empl_nombre, $empl_apellido, $empl_puesto, $depa_id, $empl_salario, $empl_fecha_contrat, $empl_estado, $empl_id);
+    $stmt->bind_param('sssiissi', $nombre, $apellido, $puesto, $departa, $salario, $fecha_contrato, $estado, $$empl_id);
     return $stmt->execute() ? "Empleado actualizado exitosamente." : "Error al actualizar el empleado: " . $conexion->error;
 }
 
