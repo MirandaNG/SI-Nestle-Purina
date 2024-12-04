@@ -1,0 +1,59 @@
+/* General */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    padding-top: 60px;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #e81c24;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    padding: 0.5rem;
+    vertical-align: middle;
+}
+
+.navbar .navbar-brand {
+    color: white !important;
+    margin-left: 35px;
+}
+
+.title-login {
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+}
+
+.tittle-sign-in {
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+}
+
+.btn-login {
+    background-color: #e81c24;
+    font-weight: bold;
+    color: white;
+    border-radius: 10px;
+}
+
+.btn-sign-in {
+    background-color: #e81c24;
+    color: white;
+    border-radius: 10px;
+}
+
+.btn-login:hover {
+    background-color: #f8383e;
+    color: whitesmoke;
+}
+
+.btn-sign-in:hover {
+    background-color: #f8383e;
+    color: whitesmoke;
+}

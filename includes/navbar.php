@@ -6,21 +6,15 @@
         </button>
 
         <!-- Logo -->
-        <a class="navbar-brand" href="panel.php">
-            <img src="../assets/images/purina_logo.png" alt="Logo" width="140" height="64">
+        <a class="navbar-brand" href="../usuarios/panel.php">
+            <img src="../../assets/images/purina_logo.png" alt="Logo" width="140" height="64">
         </a>
 
         <!-- Menú de navegación -->
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="clientes.php">Clientes</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="productos.php">Productos</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="logout.php">Cerrar sesión</a>
+                    <a class="nav-link" href="../usuarios/logout.php">Cerrar sesión</a>
                 </li>
             </ul>
         </div>

@@ -1,0 +1,303 @@
+/* General */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    padding-top: 50px;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #e81c24;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    padding: 0.5rem;
+    vertical-align: middle;
+}
+
+.navbar .navbar-brand {
+    color: white !important;
+    margin-left: 35px;
+}
+
+.navbar .navbar-nav .nav-link {
+    color: white !important;
+    font-size: 1rem;
+}
+
+.navbar .navbar-toggler-icon {
+    background-color: #e81c24;
+}
+
+/* Sidebar */
+#sidebar-wrapper {
+    width: 0; /* Oculto inicialmente */
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: #e81c24;
+    color: white;
+    transition: width 0.3s ease; /* Suaviza la transición */
+    z-index: 99;
+    overflow-x: hidden;
+    padding-top: 60px;
+    margin-top: 40px;
+}
+
+#sidebar-wrapper.toggled {
+    width: 250px; /* Muestra la barra lateral */
+}
+
+#sidebar-wrapper .sidebar-heading {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 5px;
+    color: #fff;
+}
+
+#sidebar-wrapper .list-group-item {
+    color: white;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#sidebar-wrapper .list-group-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Contenido principal */
+#page-content-wrapper {
+    margin-left: 0; /* Sin margen inicialmente */
+    transition: margin-left 0.3s ease;
+    padding: 50px;
+}
+
+#page-content-wrapper.toggled {
+    margin-left: 250px; /* Ajusta el margen al expandir la barra lateral */
+}
+
+/* Botón de alternar barra lateral */
+#sidebarToggle {
+    font-size: 25px;
+    color: white;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    position: absolute;
+    left: 10px;
+    top: 15px;
+    z-index: 1000;
+}
+
+/* Estilo general para las tarjetas */
+.card {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.card-body {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    color: #333;
+}
+
+/* Icono de la tarjeta */
+.card-body img {
+    max-width: 50px;
+    max-height: 50px;
+    margin-right: 15px;
+}
+
+/* Estilo de texto en la tarjeta */
+.card-body .h5 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin: 0;
+}
+
+/* Estilo para el cuerpo de las tarjetas */
+.card-uno {
+    background-color: #86a744;
+    color: white;
+}
+
+.card-uno:hover {
+    background-color: #a0c459;
+}
+
+.card-dos {
+    background-color: #b213dc;
+    color: white;
+}
+
+.card-dos:hover {
+    background-color: #bd2ae6;
+}
+
+.card-tres {
+    background-color: #007bff;
+    color: white;
+}
+
+.card-tres:hover {
+    background-color: #0056b3;
+}
+
+.card-cuatro {
+    background-color: #28a745;
+    color: white;
+}
+
+.card-cuatro:hover {
+    background-color: #218838;
+}
+
+.card-cinco {
+    background-color: #e81c24;
+    color: white;
+}
+
+.card-cinco:hover {
+    background-color: #c1272d;
+}
+
+.card-seis {
+    background-color: #17a2b8;
+    color: white;
+}
+
+.card-seis:hover {
+    background-color: #138496;
+}
+
+.card-siete {
+    background-color: darkslategrey;
+    color: white;
+}
+
+.card-siete:hover {
+    background-color: #426969;
+}
+
+.card-ocho {
+    background-color: #696900;
+    color: white;
+}
+
+.card-ocho:hover {
+    background-color: #757511;
+}
+
+.card-nueve {
+    background-color: firebrick;
+    color: white;
+}
+
+.card-nueve:hover {
+    background-color: #c93535;
+}
+
+.card-diez {
+    background-color: goldenrod;
+    color: white;
+}
+
+.card-diez:hover {
+    background-color: #dbaf3e;
+    color: whitesmoke;
+}
+
+/* Estilos para las pestañas */
+.tabs {
+    margin-top: 20px;
+}
+
+.tab-titles {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+.tab-title {
+    padding: 10px 20px;
+    background-color: #f0f0f0;
+    margin-right: 5px;
+    cursor: pointer;
+    border-radius: 5px 5px 0 0;
+    transition: background-color 0.3s;
+}
+
+.tab-title.active {
+    background-color: #007bff;
+    color: white;
+}
+
+.tab-content {
+    display: none;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-top: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table th, table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+table th {
+    background-color: #f9f9f9;
+}
+
+
+/* Responsive */
+@media (max-width: 768px) {
+    #sidebar-wrapper {
+        width: 0;
+    }
+
+    #sidebar-wrapper.toggled {
+        width: 200px;
+    }
+
+    #page-content-wrapper.toggled {
+        margin-left: 200px;
+    }
+}
+
+/* Ajuste para las tarjetas en móviles */
+@media (max-width: 768px) {
+    .col-sm-3 {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+}
